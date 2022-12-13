@@ -44,8 +44,7 @@ class AccountCreate(PublicViewMixin, generics.ListCreateAPIView):
     def create(self, request, *args, **kwargs):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
-            print('data: ', serializer.validated_data)  
-            print('asdsad: ', serializer.data)
+            User.objects.create(**serializer.validated_data)
             return Response(serializer.data)
         else:
             return Response(

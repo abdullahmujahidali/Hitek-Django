@@ -13,6 +13,7 @@ from core.abstract_models import ID, Dates
 class User(AbstractBaseUser, Dates, ID):
 
     is_owner = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
