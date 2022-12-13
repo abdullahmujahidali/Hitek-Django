@@ -12,7 +12,7 @@ RUN apk add --update --no-cache postgresql-client jpeg-dev && \
 COPY ./requirements.txt /tmp/requirements.txt
 
 WORKDIR /app
-EXPOSE 7000
+EXPOSE 8000
 
 
 RUN pip install -r /tmp/requirements.txt && \

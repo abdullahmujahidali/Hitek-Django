@@ -1,6 +1,6 @@
 # Django
 # Django
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractBaseUser
 from django.db import models
 
 # 3rd Party Libraries
@@ -10,9 +10,13 @@ from user.manager import CustomBaseUserManager
 from core.abstract_models import ID, Dates
 
 
-class User(AbstractUser, Dates, ID):
+class User(AbstractBaseUser, Dates, ID):
 
     is_owner = models.BooleanField(default=False)
+    email = models.EmailField(unique=True)
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    USERNAME_FIELD = 'email'
 
     objects = CustomBaseUserManager()
 
