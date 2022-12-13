@@ -8,8 +8,9 @@ from user.serializer import UserSerializer
 
 from core.mixins import PublicViewMixin
 
-from rest_framework.decorators import action
 from rest_framework import generics
+
+from user.models import User
 
 from rest_framework.permissions import AllowAny
 
@@ -40,5 +41,15 @@ class AccountCreate(PublicViewMixin, generics.ListCreateAPIView):
 
     serializer_class = UserSerializer
 
-    def create(self, request):
-        return Response('user created')
+    def create(self, request, *args, **kwargs):
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            print('data: ', serializer.validated_data)  
+            print('asdsad: ', serializer.data)
+            return Response(serializer.data)
+        else:
+            return Response(
+                'obj not found'
+            )
+
+
