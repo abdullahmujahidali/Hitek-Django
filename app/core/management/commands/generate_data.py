@@ -18,6 +18,7 @@ class Command(BaseCommand):
                 username="django@test.com",
                 email="django@test.com",
                 password="testpass123",
+                is_staff="True",
             )
             user = User.objects.create(
                 id=uuid.UUID("79aa29d8-0bda-492a-aee1-edfc5a675927"),
